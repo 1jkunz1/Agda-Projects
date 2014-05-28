@@ -7,9 +7,6 @@ data run : Set where
   empty-run : run
 
 
-{- for benefit of mac users, who cannot see the blackboard fonts,
-   I have put some definitions with names like mac-XXXX to show the 
-   types -}
 
 -- 10 points
 decode : run → 𝕃 𝔹
@@ -31,17 +28,11 @@ lem-decode-test1 = refl
 lem-decode-empty : decode empty-run ≡ []
 lem-decode-empty = refl
 
-{- 0 points: this is just a helper for encode.
+{-
 
    Given a boolean b and a run encoding a list of booleans bs,
    construct a new run that encodes the list of booleans b :: bs.
 
-   See encodeh-lem1, encodeh-lem2, and encodeh-lem3 for 
-   properties this should satisfy.
-
-   You are not required to define encode using encodeh, but
-   I found it much easier to do it this way than the alternatives
-   I considered.
 -}
 encodeh : 𝔹 → run → run
 encodeh tt (nonempty-run tt n ns) = (nonempty-run tt (suc n) ns)
