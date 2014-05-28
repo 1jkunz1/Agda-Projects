@@ -1,0 +1,43 @@
+mifl
+
+Start
+
+start
+
+Syntactic
+
+Strt : start -> ows commands+ .
+
+% Datatype Declarations
+commands -> dataDeclare constructorDeclare .
+commands -> functionDefine equationsDeclare .
+dataDeclare -> 'data' ws symb ws 'where' ows .
+constructorDeclare -> (symb ows ':' ows type ws)* .
+type -> symb .
+ArrowType : type -> type ows '->' ows type .
+ParenType : type -> '(' ows type ows ')' .
+
+% Function Definitions
+functionDefine -> 'fun' ws symb ows ':' ows type ws .
+equationsDeclare -> (term ows '=' ows term ows '.' ows)* .
+term -> symb .
+ParenTerm : term -> '(' ows term ows ')' .
+Application : term -> term ws term .
+
+
+Lexical
+
+symb -> ['a'-'z']+ .
+aws => ('\n' | '\t' | space | ('%' (['a' - 'z' ] | space | ',' | ';')* '\n')) .
+ws => aws+ .
+ows => aws* .
+
+
+Vars
+
+x y z
+
+Rules
+
+ArrowType(ArrowType(x,y),z) -> ArrowType(x,ArrowType(y,z))
+Application(x,Application(y,z)) -> Application(Application(x,y),z)
