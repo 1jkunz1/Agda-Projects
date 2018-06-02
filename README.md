@@ -1,4 +1,4 @@
-Agda_Projects
+Agda Projects
 =============
 
 Programming Language Concepts Projects written in Agda.
